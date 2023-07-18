@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    if(Auth::guard('admin')->check()) {
+
+        return redirect()->route('admin.home');
+
+    }elseif(Auth::guard('teacher')->check()) {
+
+        return redirect()->route('teacher.home');
+
+    }elseif(Auth::guard('web')->check()) {
+
+        return redirect()->route('student.home');
+
+    }
+
+    // return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -29,3 +45,26 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+Route::get('student/home', function() {
+    return 'Student Home';
+})->name('student.home')->middleware('auth');
+
+
+
+
+
+
+
+// $_SESSION['user'] = 'ddd';
+
+// // 555565 -> time
+// // 555555 -> last active
+
+// if(time() - $_SESSION['last_active'] > 5) {
+//     // session expired... logout user here or redirect him back login page.. etc
+//     header("Location: logout.php");
+// }
+// $_SESSION['last_active'] = time();
