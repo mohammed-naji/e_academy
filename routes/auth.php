@@ -18,9 +18,9 @@ Route::middleware('guest:web,admin,teacher')->group(function () {
 
     Route::get('student/login', [AuthenticatedSessionController::class, 'create_student'])->name('login');
 
-    Route::get('teacher/login', [AuthenticatedSessionController::class, 'create_teacher'])->name('login');
+    Route::get('teacher/login', [AuthenticatedSessionController::class, 'create_teacher'])->name('teacher_login');
 
-    Route::get('admin/login', [AuthenticatedSessionController::class, 'create_admin'])->name('login');
+    Route::get('admin/login', [AuthenticatedSessionController::class, 'create_admin'])->name('admin_login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.action');
 

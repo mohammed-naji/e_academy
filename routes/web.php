@@ -21,22 +21,27 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
 
-    if(Auth::guard('admin')->check()) {
+    // dd(Auth::guard('teacher')->check());
 
-        return redirect()->route('admin.home');
+    // if(Auth::guard('web')->check()) {
+    //     return redirect('student/home');
 
-    }elseif(Auth::guard('teacher')->check()) {
+    // }
 
-        return redirect()->route('teacher.home');
+    // if(Auth::guard('teacher')->check()) {
 
-    }elseif(Auth::guard('web')->check()) {
+    //     return redirect('teacher/home');
 
-        return redirect()->route('student.home');
+    // }
 
-    }
+    // if(Auth::guard('admin')->check()) {
 
-    // return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    //     return redirect('admin/home');
+
+    // }
+
+    return view('dashboard');
+})->middleware(['auth:web,teacher,admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,9 +53,9 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('student/home', function() {
-    return 'Student Home';
-})->name('student.home')->middleware('auth');
+// Route::get('student/home', function() {
+//     return 'Student Home';
+// })->name('student.home')->middleware('auth');
 
 
 
