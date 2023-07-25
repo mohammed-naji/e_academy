@@ -86,8 +86,8 @@
                 </a>
                 <div id="collapseTeacher" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">All Teachers</a>
-                        <a class="collapse-item" href="cards.html">Add New Teacher</a>
+                        <a class="collapse-item" href="{{ route('admin.teachers.index') }}">All Teachers</a>
+                        <a class="collapse-item" href="{{ route('admin.teachers.create') }}">Add New Teacher</a>
                     </div>
                 </div>
             </li>
@@ -103,8 +103,8 @@
                 </a>
                 <div id="collapseCourse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">All Courses</a>
-                        <a class="collapse-item" href="cards.html">Add New Course</a>
+                        <a class="collapse-item" href="{{ route('admin.courses.index') }}">All Courses</a>
+                        <a class="collapse-item" href="{{ route('admin.courses.create') }}">Add New Course</a>
                     </div>
                 </div>
             </li>
@@ -230,10 +230,15 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
                             </div>
                         </li>
 
@@ -283,7 +288,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('panel/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('panel/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -293,7 +298,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('panel/js/sb-admin-2.min.js')}}"></script>
-
+    @yield('js')
 </body>
 
 </html>

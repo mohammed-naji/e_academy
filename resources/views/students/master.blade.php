@@ -128,8 +128,19 @@
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                <i class="zmdi zmdi-power"></i>
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
+
+                                        {{-- <a href="#">
+                                            <i class="zmdi zmdi-power"></i>Logout</a> --}}
                                     </div>
                                 </div>
                             </div>

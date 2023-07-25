@@ -23,22 +23,22 @@ Route::get('/dashboard', function () {
 
     // dd(Auth::guard('teacher')->check());
 
-    // if(Auth::guard('web')->check()) {
-    //     return redirect('student/home');
+    if(Auth::guard('web')->check()) {
+        return redirect('student/home');
 
-    // }
+    }
 
-    // if(Auth::guard('teacher')->check()) {
+    if(Auth::guard('teacher')->check()) {
 
-    //     return redirect('teacher/home');
+        return redirect('teacher/home');
 
-    // }
+    }
 
-    // if(Auth::guard('admin')->check()) {
+    if(Auth::guard('admin')->check()) {
 
-    //     return redirect('admin/home');
+        return redirect('admin/home');
 
-    // }
+    }
 
     return view('dashboard');
 })->middleware(['auth:web,teacher,admin'])->name('dashboard');
