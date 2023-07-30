@@ -6,6 +6,7 @@
 <form action="{{ route('admin.teachers.update', $teacher->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('put')
+    <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">

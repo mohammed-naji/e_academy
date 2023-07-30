@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
     <!-- Custom CSS -->
    <link href="{{ asset('teach/css/style.min.css') }}" rel="stylesheet">
+   @yield('css')
 </head>
 
 <body>
@@ -77,10 +78,32 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
+                        <li class="me-4">
+                            <span class="text-white font-medium">
+                                Your Revenue:
+
+                                @if (Auth::user()->revenue == 0)
+                                <b class="text-danger">${{ Auth::user()->revenue }}</b>
+                                @else
+                                <b class="text-warning">${{ Auth::user()->revenue }}</b>
+                                @endif
+
+                                 </span>
+                        </li>
+
                         <li>
-                            <a class="profile-pic" href="#">
-                                <img src="{{asset('teach/plugins/images/users/varun.jpg')}}" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                            <a class="profile-pic" href="{{ route('teacher.profile') }}">
+
+                                @if (Auth::user()->image)
+                                <img src="{{asset('images/'.Auth::user()->image)}}" alt="user-img" width="30"
+                                class="img-circle">
+                                @else
+                                <img src="https://ui-avatars.com/api/?background=random&name={{ Auth::user()->name }}" alt="user-img" width="30"
+                                class="img-circle">
+
+                                @endif
+
+                            <span class="text-white font-medium">{{ Auth::user()->name }}</span></a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -121,6 +144,13 @@
                                 aria-expanded="false">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                 <span class="hide-menu">Appointment</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('teacher.times.index') }}"
+                                aria-expanded="false">
+                                <i class="fa fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Available Times</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -190,6 +220,7 @@
     <script src="{{asset('teach/js/sidebarmenu.js')}}"></script>
     <!--Custom JavaScript -->
     <script src="{{asset('teach/js/custom.js')}}"></script>
+    @yield('js')
 </body>
 
 </html>

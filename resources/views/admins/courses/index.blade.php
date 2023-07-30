@@ -17,10 +17,10 @@
     <tr>
         <td>{{ $course->id }}</td>
         <td><img width="50" src="{{ asset('images/'.$course->image) }}" alt=""></td>
-        <td>{{ $course->name }}</td>
-        <td>{{ $course->email }}</td>
+        <td>{{ $course->{'name_'.app()->currentLocale()} }}</td>
+        <td>${{ $course->price }}</td>
+        <td>{{ $course->duration }}</td>
         <td>{{ $course->created_at->diffForHumans() }}</td>
-        <td>{{ $course->updated_at->diffForHumans() }}</td>
         <td>
             <a class="btn btn-sm btn-primary" href="{{ route('admin.courses.edit', $course->id) }}"><i class="fas fa-edit"></i></a>
             <form class="d-inline" action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">

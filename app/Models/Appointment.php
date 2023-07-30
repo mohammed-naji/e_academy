@@ -9,8 +9,10 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     function student() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     function teacher() {

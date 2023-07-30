@@ -23,12 +23,14 @@ class TeacherRequest extends FormRequest
     {
 
         $rule = 'required';
+        $val = 'required|unique:teachers,email';
         if($this->method() == 'PUT') {
             $rule = 'nullable';
+            $val = 'required|unique:teachers,email,'.$this->teacher_id;
         }
         return [
             'name' => 'required',
-            'email' => 'required',
+            'email' => $val,
             'password' => $rule,
             'phone' => 'required',
             'image' => $rule,
