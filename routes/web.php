@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestApiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +58,7 @@ require __DIR__.'/auth.php';
 //     return 'Student Home';
 // })->name('student.home')->middleware('auth');
 
-
+Route::get('products', [TestApiController::class, 'index']);
 
 
 
