@@ -18,4 +18,8 @@ class Course extends Model
     function students() {
         return $this->belongsToMany(User::class, 'student_courses');
     }
+
+    function getNameAttribute() {
+        return $this->{'name_'.app()->currentLocale()};
+    }
 }

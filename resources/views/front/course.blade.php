@@ -1,19 +1,18 @@
-<?php
-include('header.php');
-?>
-    <!--====== PAGE BANNER PART START ======-->
-    
-    <section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8" style="background-image: url(images/page-banner-2.jpg)">
+@extends('front.app')
+
+@section('content')
+    <section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8" style="background-image: url({{ asset('images/page-banner-2.jpg') }})">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-banner-cont">
-                        <h2>Learn basic javascript</h2>
+                        {{-- @dump($course) --}}
+                        <h2 class="text-center">{{ $course->name }}</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Courses</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Learn basic javasript</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/course') }}">Courses</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $course->name }}</li>
                             </ol>
                         </nav>
                     </div>  <!-- page banner cont -->
@@ -21,11 +20,7 @@ include('header.php');
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
-    
-    <!--====== PAGE BANNER PART ENDS ======-->
-    
-    <!--====== COURSES SINGEl PART START ======-->
-    
+
     <section id="corses-singel" class="pt-90 pb-120 gray-bg">
         <div class="container">
             <div class="row">
@@ -68,11 +63,11 @@ include('header.php');
                                 </li>
                             </ul>
                         </div> <!-- course terms -->
-                        
+
                         <div class="corses-singel-image pt-50">
                             <img src="images/course/cu-1.jpg" alt="Courses">
                         </div> <!-- corses singel image -->
-                        
+
                         <div class="corses-tab mt-30">
                             <ul class="nav nav-justified" id="myTab" role="tablist">
                                 <li class="nav-item">
@@ -88,7 +83,7 @@ include('header.php');
                                     <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
                                 </li>
                             </ul>
-                            
+
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                                     <div class="overview-description">
@@ -126,7 +121,7 @@ include('header.php');
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="card">
                                                 <div class="card-header" id="headingTow">
                                                     <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseTow" aria-expanded="true" aria-controls="collapseTow">
@@ -199,7 +194,7 @@ include('header.php');
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="card">
                                                 <div class="card-header" id="headingSix">
                                                     <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
@@ -217,7 +212,7 @@ include('header.php');
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="card">
                                                 <div class="card-header" id="headingSeven">
                                                     <a href="#" data-toggle="collapse" class="collapsed" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
@@ -393,7 +388,7 @@ include('header.php');
                             </div> <!-- tab content -->
                         </div>
                     </div> <!-- corses singel left -->
-                    
+
                 </div>
                 <div class="col-lg-4">
                     <div class="row">
@@ -407,14 +402,14 @@ include('header.php');
                                     <li><i class="fa fa-user-o"></i>Students :  <span>100</span></li>
                                 </ul>
                                 <div class="price-button pt-10">
-                                    <span>Price : <b>$25</b></span>
-                                    <a href="#" class="main-btn">Enroll Now</a>
+                                    <span>Price : <b>${{ $course->price }}</b></span>
+                                    <a href="{{ route('enroll', $course->id) }}" class="main-btn">Enroll Now</a>
                                 </div>
                             </div> <!-- course features -->
                         </div>
                         <div class="col-lg-12 col-md-6">
                             <div class="You-makelike mt-30">
-                                <h4>You make like </h4> 
+                                <h4>You make like </h4>
                                 <div class="singel-makelike mt-20">
                                     <div class="image">
                                         <img src="images/your-make/y-1.jpg" alt="Image">
@@ -543,8 +538,4 @@ include('header.php');
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
-    
-    <!--====== COURSES SINGEl PART ENDS ======-->
-   <?php
-   include('footer.php');
-   ?>
+@stop

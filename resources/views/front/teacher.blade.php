@@ -96,7 +96,7 @@
                                                     </ul>
                                                     <span>(20 Reviws)</span>
                                                     <br>
-                                                    <a href="courses-singel.php"><h4>{{ $course->{'name_'.app()->currentLocale()} }}</h4></a>
+                                                    <a href="{{ route('course', $course->id) }}"><h4>{{ $course->{'name_'.app()->currentLocale()} }}</h4></a>
                                                     <div class="course-teacher">
                                                         <div class="thum">
                                                             <a href="#"><img src="{{ asset('images/'.$teacher->image) }}" alt="teacher"></a>

@@ -82,3 +82,5 @@ Route::get('/', [SiteController::class, 'index'])->name('index');
 Route::get('/course/{id}', [SiteController::class, 'course'])->name('course');
 Route::get('/teachers/{id}', [SiteController::class, 'teacher'])->name('teacher');
 Route::get('/search', [SiteController::class, 'search'])->name('search');
+Route::get('/course/{id}/enroll', [SiteController::class, 'enroll'])->name('enroll');
+Route::get('/course/{id}/payment', [SiteController::class, 'payment'])->name('payment');

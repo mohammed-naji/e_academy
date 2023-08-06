@@ -192,7 +192,7 @@
                             </div>
                             <div class="course-teacher">
                                 <div class="thum">
-                                    <a href="courses-singel.html"><img width="40" src="{{ asset('images/'.$course->teacher->image) }}" alt="teacher"></a>
+                                    <a href="courses-singel.html"><img width="50" height="50" style="object-fit: cover" src="{{ asset('images/'.$course->teacher->image) }}" alt="teacher"></a>
                                 </div>
                                 <div class="name">
                                     <a href="{{ route('teacher', $course->teacher_id) }}"><h6>{{ $course->teacher->name }}</h6></a>
