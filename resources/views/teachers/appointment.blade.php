@@ -30,7 +30,7 @@ tr.danger {
                 <tr class="{{ $appointment->status == 1 ? 'success' : '' }} {{ $appointment->status == 2 ? 'danger' : '' }}">
                     <td>{{ $appointment->id }}</td>
                     <td>{{ $appointment->student->name }}</td>
-                    <td>{{ $appointment->available_time->day }}</td>
+                    <td>{{ $appointment->available_time->day??'' }}</td>
                     <td>{{ $appointment->created_at->diffForHumans() }}</td>
                     <td>
                         <a href="{{ route('teacher.appointment_status', [$appointment->id, 1]) }}" class="btn btn-sm btn-success">

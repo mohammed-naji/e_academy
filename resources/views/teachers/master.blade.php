@@ -157,18 +157,12 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <x-dropdown-link :href="route('logout')"
+                                <x-dropdown-link class="sidebar-link waves-effect waves-dark sidebar-link" :href="route('logout')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
-
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
-                                aria-expanded="false">
-                                <i class="fa fa-logout" aria-hidden="true"></i>
-                                <span class="hide-menu">Logout</span>
-                            </a>
                         </li>
                     </ul>
 

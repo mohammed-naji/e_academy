@@ -33,7 +33,18 @@ class TeacherTimesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'day' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required'
+        ]);
+
+        $data = $request->except('_token');
+        $data['teacher_id'] = Auth::id();
+
+        AvailableTime::create( $data );
+
+        return redirect()->route('teacher.times.index');
     }
 
     /**
@@ -59,7 +70,17 @@ class TeacherTimesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'day' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required'
+        ]);
+
+        $time = AvailableTime::find($id);
+
+        $time->update($request->all());
+
+        return redirect()->route('teacher.times.index');
     }
 
     /**
@@ -67,6 +88,8 @@ class TeacherTimesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        AvailableTime::destroy($id);
+
+        return redirect()->route('teacher.times.index');
     }
 }

@@ -4,7 +4,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <h3 class="box-title">Appointment Page</h3>
+            <h3 class="box-title">Available Times</h3>
+
+            <a class="btn btn-success" href="{{ route('teacher.times.create') }}">Add new Time</a>
 
             <table class="table">
                 <tr>
@@ -27,9 +29,11 @@
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <a href="{{ route('teacher.times.destroy',$time->id) }}" class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                        <form class="d-inline" action="{{ route('teacher.times.destroy',$time->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure')"><i class="fas fa-trash"></i></button>
+                        </form>
                     </td>
                 </tr>
                 @empty

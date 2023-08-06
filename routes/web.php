@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TestApiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
 
@@ -74,3 +75,10 @@ Route::get('products', [TestApiController::class, 'index']);
 //     header("Location: logout.php");
 // }
 // $_SESSION['last_active'] = time();
+
+
+// Front Site Routes
+Route::get('/', [SiteController::class, 'index'])->name('index');
+Route::get('/course/{id}', [SiteController::class, 'course'])->name('course');
+Route::get('/teachers/{id}', [SiteController::class, 'teacher'])->name('teacher');
+Route::get('/search', [SiteController::class, 'search'])->name('search');
