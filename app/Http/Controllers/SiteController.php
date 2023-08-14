@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Teacher;
+use App\Notifications\NewCoursePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -148,6 +149,9 @@ class SiteController extends Controller
 
             // add teacher revenue to his account
             $course->teacher()->increment('revenue', $teacher_revenue);
+
+            // Send Notification to Teacher
+            $course->teacher->notify(new NewCoursePayment(Auth::user()->name, $course->name));
 
             // register user in teacher course
             $course->students()->attach([Auth::id()]);

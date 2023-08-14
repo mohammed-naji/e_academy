@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
     <!-- Custom CSS -->
    <link href="{{ asset('teach/css/style.min.css') }}" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
    @yield('css')
 </head>
 
@@ -214,7 +215,12 @@
     <script src="{{asset('teach/js/sidebarmenu.js')}}"></script>
     <!--Custom JavaScript -->
     <script src="{{asset('teach/js/custom.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @yield('js')
+    <script>
+        let userId = '{{ Auth::id() }}'
+    </script>
+    @vite(['resources/js/app.js'])
 </body>
 
 </html>
